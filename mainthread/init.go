@@ -50,9 +50,6 @@ func init() {
 			ch <- errors.New("cannot initialize GIL")
 			return
 		}
-		defer func() {
-			C.PyEval_ReleaseThread(C.PyGILState_GetThisThreadState())
-		}()
 
 		if err := importSys(); err != nil {
 			ch <- err
